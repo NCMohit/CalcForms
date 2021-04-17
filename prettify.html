@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CalcForms</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="tailwind.css">
+</head>
+<body class="bg-gray-600">
+	<h3 class="text-xl m-4 font-bold">Enter your equation: </h3>
+	<input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="expression"><br>
+	<button class="m-4 bg-indigo-500 text-gray-100 p-2 rounded-lg tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                shadow-lg" onclick="prettify()">Prettify</button>
+	<h3 class="text-md m-4 font-bold">Result: </h3>
+	<h3 class="text-sm m-4 font-bold" id="result"></h3>
+    <h3 class="text-sm m-4 font-bold text-red-900" id="error"></h3>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const val = urlParams.get('val');
+        console.log(val);
+        document.getElementById("result").innerHTML = val;
+
+        function prettify(){
+            try {
+                window.location.replace(window.location.hostname+"?val=`"+document.getElementById("expression").value+"`");
+                document.getElementById("error").innerHTML = "";
+            }
+            catch(err) {
+              document.getElementById("error").innerHTML = err.message;
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
+</body>
+</html>

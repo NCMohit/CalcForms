@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CalcForms</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="tailwind.css">
+	<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+</head>
+<body class="bg-gray-600">
+    <script>
+        function draw() {
+            try {
+                const expression = document.getElementById('expression').value
+                const expr = math.compile(expression)
+
+                const xValues = math.range(-10, 10, 0.1).toArray()
+                const yValues = xValues.map(function (x) {
+                    return expr.evaluate({x: x})
+                })
+                const trace1 = {
+                    x: xValues,
+                    y: yValues,
+                    type: 'scatter'
+                }
+                const data = [trace1]
+                Plotly.newPlot('plot', data)
+            }
+            catch (err) {
+                alert(err)
+            }
+        }
+
+        document.getElementById('form').onsubmit = function (event) {
+        event.preventDefault()
+        draw()
+        }
+
+        draw()
+    </script>
+	<h3 class="text-xl m-4 font-bold">Enter your equation: </h3>
+	<input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="expression"><br>
+	<button class="m-4 bg-indigo-500 text-gray-100 p-2 rounded-lg tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                shadow-lg" onclick="draw()">Draw graph</button>
+	<h3 class="text-md m-4 font-bold">Result: </h3>
+	<div id="plot" class="w-2/3"></div>
+    <h3 class="text-sm m-4 font-bold text-red-900" id="error"></h3>
+</body>
+</html>
