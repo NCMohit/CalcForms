@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CalcForms</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="tailwind.css">
-	<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+    <title>CalcForms</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tailwind.css">
+    <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
 </head>
 <body class="bg-gray-600">
     <script>
         function eval(){
             try {
-                document.getElementById("result").innerHTML = math.format(math.evaluate(document.getElementById("expression").value),14);
+                document.getElementById("result").innerHTML = math.derivative(document.getElementById("expression").value,document.getElementById("var").value);
                 document.getElementById("error").innerHTML = "";
             }
             catch(err) {
@@ -26,13 +26,15 @@
     <h3 class="text-md w-1/6 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg"><a href="ndc.html">Normal Distribution Curve</a></h3>
     <h3 class="text-md w-1/12 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg float-right"><a href="index.html">Home</a></h3>
 </nav>
-	<h3 class="text-xl m-4 font-bold">Enter your equation: </h3>
-	<input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="expression"><br>
-	<button class="m-4 bg-indigo-500 text-gray-100 p-2 rounded-lg tracking-wide
+    <h3 class="text-xl m-4 font-bold">Enter your equation: </h3>
+    <input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="expression"><br>
+    <h3 class="text-xl m-4 font-bold">Enter your variable: </h3>
+    <input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="var"><br>
+    <button class="m-4 bg-indigo-500 text-gray-100 p-2 rounded-lg tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                 shadow-lg" onclick="eval()">Evaluate</button>
-	<h3 class="text-md m-4 font-bold">Result: </h3>
-	<h3 class="text-sm m-4 font-bold" id="result"></h3>
+    <h3 class="text-md m-4 font-bold">Result: </h3>
+    <h3 class="text-lg m-4 font-bold" id="result"></h3>
     <h3 class="text-sm m-4 font-bold text-red-900" id="error"></h3>
 </body>
 </html>
