@@ -11,8 +11,8 @@
 <body class="bg-gray-600">
     <script>
         function draw() {
-            try {
-                const expression = document.getElementById('expression').value
+            // try {
+                const expression = "(e ^ (-(x - "+document.getElementById("mu").value+")^2)/(2*("+document.getElementById("sigma").value+"^2)) )/ ( "+document.getElementById("sigma").value+"*sqrt(2*pi) )"
                 const expr = math.compile(expression)
 
                 const xValues = math.range(-10, 10, 0.1).toArray()
@@ -26,28 +26,30 @@
                 }
                 const data = [trace1]
                 Plotly.newPlot('plot', data)
-            }
-            catch (err) {
-                alert(err)
-            }
+            // }
+            // catch (err) {
+            //     // alert(err)
+            // }
         }
 
-        document.getElementById('form').onsubmit = function (event) {
-        event.preventDefault()
-        draw()
-        }
+        // document.getElementById('form').onsubmit = function (event) {
+        // event.preventDefault()
+        // draw()
+        // }
 
         draw()
     </script>
 <nav class="flex bg-gray-300">
     <h3 class="text-md w-1/6 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg"><a href="eqcalc.html">Equation calculator</a></h3>
-    <h3 class="text-md w-1/6 m-4 bg-indigo-700 text-gray-100 text-center rounded-lg"><a href="#">Equation visualizer</a></h3>
+    <h3 class="text-md w-1/6 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg"><a href="eqgraph.html">Equation visualizer</a></h3>
     <h3 class="text-md w-1/6 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg"><a href="prettify.html">Equation prettifier</a></h3>
-    <h3 class="text-md w-1/6 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg"><a href="ndc.html">Normal Distribution Curve</a></h3>
+    <h3 class="text-md w-1/6 m-4 bg-indigo-700 text-gray-100 text-center rounded-lg"><a href="#">Normal Distribution Curve</a></h3>
     <h3 class="text-md w-1/12 m-4 bg-indigo-500 text-gray-100 text-center rounded-lg float-left"><a href="index.html">Home</a></h3>
 </nav>
-	<h3 class="text-xl m-4 font-bold">Enter your equation: </h3>
-	<input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="expression"><br>
+	<h3 class="text-xl m-4 font-bold">Enter &mu; value: </h3>
+	<input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="mu" value="0"><br>
+    <h3 class="text-xl m-4 font-bold">Enter &sigma; value: </h3>
+    <input class="m-4 text-lg py-2 px-2 rounded-lg border-b border-gray-300 w-1/2" type="text" id="sigma" value="1"><br>
 	<button class="m-4 bg-indigo-500 text-gray-100 p-2 rounded-lg tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                 shadow-lg" onclick="draw()">Draw graph</button>
